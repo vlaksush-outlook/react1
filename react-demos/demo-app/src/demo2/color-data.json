@@ -1,0 +1,22 @@
+[
+    {
+        "id":"101",
+        "title":"fav1",
+        "color":"green",
+        "rating":"5"
+    },
+
+    {
+        "id":"102",
+        "title":"fav2",
+        "color":"blue",
+        "rating":"2"
+    },
+
+    {
+        "id":"103",
+        "title":"fav3",
+        "color":"red",
+        "rating":"3"
+    }
+]
