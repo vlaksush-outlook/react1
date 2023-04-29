@@ -6,21 +6,23 @@ import ColorList from './demo2/ColorList';
 import { useState } from 'react';
 import Color from './demo2/Color';
 import AddColorForm from './demo2/AddColorForm';
-import {v4} from 'uuid'
+import { v4 } from 'uuid'
+import A from './context/A';
+import NameContext from './context/mycontext';
 function App() {
 
-  const[colors,setColors]= useState(colorData);
+  const [colors, setColors] = useState(colorData);
 
   const removeColor = (id) => {
-   const newColors =  colors.filter( color => color.id !== id)
-   setColors(newColors);
+    const newColors = colors.filter(color => color.id !== id)
+    setColors(newColors);
   }
 
-  const rateColor = (id,rating) => {
-    const newColors = colors.map( color =>
-      color.id == id ? {...color,rating} : color
-      )
-      setColors(newColors);
+  const rateColor = (id, rating) => {
+    const newColors = colors.map(color =>
+      color.id == id ? { ...color, rating } : color
+    )
+    setColors(newColors);
   }
 
 
@@ -30,33 +32,50 @@ function App() {
   color => 103 fav3 blue 2
   */
 
-  const createColor = (title,color) => {
+  const createColor = (title, color) => {
     const newColors = [
       ...colors,
       {
-        id:v4(),
-        title:title,
-        color:color,
-        rating:0
+        id: v4(),
+        title: title,
+        color: color,
+        rating: 0
       }
     ]
     setColors(newColors);
   }
 
+  // return (
+  //   <div>
+
+  //  <AddColorForm 
+  //  onNewColor={createColor}
+  //  />
+
+  //    <ColorList 
+  //    colors = {colors} 
+  //    onRemoveColor={removeColor}
+  //    onRateColor = {rateColor}
+  //    />
+  //   </div>
+  // );
+
+
+  // // Understanding Context API
+  const [orgName, setOrgName] = useState("ABC Technologies");
+  const myfun = (data) => {
+    console.log(data)
+  }
   return (
     <div>
-   
-   <AddColorForm 
-   onNewColor={createColor}
-   />
-
-     <ColorList 
-     colors = {colors} 
-     onRemoveColor={removeColor}
-     onRateColor = {rateColor}
-     />
+      <NameContext.Provider value={orgName}>
+      <App />
+      </NameContext.Provider>
     </div>
-  );
+  )
+
+
+
 }
 
 export default App;
