@@ -9,6 +9,10 @@ import AddColorForm from './demo2/AddColorForm';
 import { v4 } from 'uuid'
 import A from './context/A';
 import NameContext from './context/mycontext';
+import Demo1 from './hooks/Demo1';
+import Demo2 from './hooks/Demo2';
+import CounterWithState from './hooks/CounterWithState';
+import GitHubUser from './hooks/GitHubUser';
 function App() {
 
   const [colors, setColors] = useState(colorData);
@@ -61,16 +65,53 @@ function App() {
   // );
 
 
-  // // Understanding Context API
-  const [orgName, setOrgName] = useState("ABC Technologies");
-  const myfun = (data) => {
-    console.log(data)
-  }
+
+
+
+  // // // Understanding Context API
+  // const [orgName, setOrgName] = useState("ABC Technologies");
+  // const myfun = (data) => {
+  //   console.log(data)
+  // }
+  // return (
+  //   <div>
+  //     <NameContext.Provider value={orgName}>
+  //     <App />
+  //     </NameContext.Provider>
+  //   </div>
+  // )
+
+
+  // // // Understanding useEffect
+  // return (
+  //   <div>
+
+  //   <h2>useEffect Demo</h2>
+  //   <Demo1 />
+
+  //   </div>
+  // )
+
+
+  //  // // Understanding useReducer
+  //  return (
+  //   <div>
+
+  //   <h2>useReducer Demo</h2>
+  //   <CounterWithReducer />
+
+  //   </div>
+  // )
+
+
+
+  // // Understanding fetching Data with useEffect
   return (
     <div>
-      <NameContext.Provider value={orgName}>
-      <App />
-      </NameContext.Provider>
+
+      <h2>Fetching Data Demo</h2>
+      <GitHubUser login="vlaksush-outlook" />
+
     </div>
   )
 
