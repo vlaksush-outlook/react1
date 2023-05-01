@@ -1,122 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
-import StarRating from './demo2/StarRating';
-import colorData from './demo2/color-data.json';
-import ColorList from './demo2/ColorList';
-import { useState } from 'react';
-import Color from './demo2/Color';
-import AddColorForm from './demo2/AddColorForm';
-import { v4 } from 'uuid'
-import A from './context/A';
-import NameContext from './context/mycontext';
 import Demo1 from './hooks/Demo1';
-import Demo2 from './hooks/Demo2';
-import CounterWithState from './hooks/CounterWithState';
 import GitHubUser from './hooks/GitHubUser';
+import CounterWithReducer from './hooks/CounterWithReducer';
+
+import { Router } from '@reach/router';
+import Home from './components/Home';
+import ColorHome from './demo2/ColorHome';
+import ContextHome from './demo2/ContextHome';
+import Counter from './components/Counter';
+import ReduxHome from './components/ReduxHome';
+
 function App() {
-
-  const [colors, setColors] = useState(colorData);
-
-  const removeColor = (id) => {
-    const newColors = colors.filter(color => color.id !== id)
-    setColors(newColors);
-  }
-
-  const rateColor = (id, rating) => {
-    const newColors = colors.map(color =>
-      color.id == id ? { ...color, rating } : color
-    )
-    setColors(newColors);
-  }
-
-
-  /*
-  color => 101 fav1 red 2
-  color => 102 fav2 green 3
-  color => 103 fav3 blue 2
-  */
-
-  const createColor = (title, color) => {
-    const newColors = [
-      ...colors,
-      {
-        id: v4(),
-        title: title,
-        color: color,
-        rating: 0
-      }
-    ]
-    setColors(newColors);
-  }
-
-  // return (
-  //   <div>
-
-  //  <AddColorForm 
-  //  onNewColor={createColor}
-  //  />
-
-  //    <ColorList 
-  //    colors = {colors} 
-  //    onRemoveColor={removeColor}
-  //    onRateColor = {rateColor}
-  //    />
-  //   </div>
-  // );
-
-
-
-
-
-  // // // Understanding Context API
-  // const [orgName, setOrgName] = useState("ABC Technologies");
-  // const myfun = (data) => {
-  //   console.log(data)
-  // }
-  // return (
-  //   <div>
-  //     <NameContext.Provider value={orgName}>
-  //     <App />
-  //     </NameContext.Provider>
-  //   </div>
-  // )
-
-
-  // // // Understanding useEffect
-  // return (
-  //   <div>
-
-  //   <h2>useEffect Demo</h2>
-  //   <Demo1 />
-
-  //   </div>
-  // )
-
-
-  //  // // Understanding useReducer
-  //  return (
-  //   <div>
-
-  //   <h2>useReducer Demo</h2>
-  //   <CounterWithReducer />
-
-  //   </div>
-  // )
-
-
-
-  // // Understanding fetching Data with useEffect
+  // // Understanding routing
   return (
     <div>
-
-      <h2>Fetching Data Demo</h2>
-      <GitHubUser login="vlaksush-outlook" />
+      <Router>
+        <Home path="/" />
+        <GitHubUser login="vlaksush-outlook" path="/github" />
+        <CounterWithReducer path="/reducer" />
+        <ColorHome path="/color" />
+        <Demo1 path="/hook" />
+        <ContextHome path="/context" />
+        <ReduxHome path="/redux" />
+      </Router>
 
     </div>
   )
-
-
-
 }
 
 export default App;

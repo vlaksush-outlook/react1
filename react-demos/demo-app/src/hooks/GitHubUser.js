@@ -1,3 +1,4 @@
+import { Link } from '@reach/router';
 import React, { useEffect, useState } from 'react'
 
 export default function GitHubUser({ login }) {
@@ -13,6 +14,7 @@ export default function GitHubUser({ login }) {
     if (data)
         return (
             <div>
+                <Link to="/"> <button>Go Home</button></Link>
                 <pre>
                     {JSON.stringify(data, null, 2)}
                 </pre>
